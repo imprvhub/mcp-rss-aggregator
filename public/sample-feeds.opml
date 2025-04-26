@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>RSS Feed Subscriptions</title>
+    <dateCreated>Fri, 25 Apr 2025 12:00:00 GMT</dateCreated>
+    <ownerName>Claude Desktop User</ownerName>
+  </head>
+  <body>
+    <outline text="Tech News" title="Tech News">
+      <outline text="Hacker News" title="Hacker News" type="rss" xmlUrl="https://news.ycombinator.com/rss" htmlUrl="https://news.ycombinator.com/"/>
+      <outline text="TechCrunch" title="TechCrunch" type="rss" xmlUrl="https://techcrunch.com/feed/" htmlUrl="https://techcrunch.com/"/>
+      <outline text="The Verge" title="The Verge" type="rss" xmlUrl="https://www.theverge.com/rss/index.xml" htmlUrl="https://www.theverge.com/"/>
+    </outline>
+    <outline text="Programming" title="Programming">
+      <outline text="CSS-Tricks" title="CSS-Tricks" type="rss" xmlUrl="https://css-tricks.com/feed/" htmlUrl="https://css-tricks.com/"/>
+      <outline text="DEV.to" title="DEV.to" type="rss" xmlUrl="https://dev.to/feed" htmlUrl="https://dev.to/"/>
+      <outline text="GitHub Blog" title="GitHub Blog" type="rss" xmlUrl="https://github.blog/feed/" htmlUrl="https://github.blog/"/>
+    </outline>
+    <outline text="Science" title="Science">
+      <outline text="NASA" title="NASA" type="rss" xmlUrl="https://www.nasa.gov/feed/" htmlUrl="https://www.nasa.gov/"/>
+      <outline text="Scientific American" title="Scientific American" type="rss" xmlUrl="https://rss.sciam.com/ScientificAmerican-Global" htmlUrl="https://www.scientificamerican.com/"/>
+    </outline>
+  </body>
+</opml>
