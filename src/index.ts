@@ -242,7 +242,10 @@ class RSSAggregator {
     const itemsPerFeed = Math.ceil(limit / this.feeds.size);
     
     this.feeds.forEach((feed, id) => {
-      if (!category || feed.category === category) {
+      if (!category || 
+          (feed.category && feed.category.toLowerCase() === category.toLowerCase()) ||
+          (feed.category && feed.category.toLowerCase().includes(category.toLowerCase())) ||
+          (feed.title && feed.title.toLowerCase().includes(category.toLowerCase()))) {
         feedPromises.push(this.getFeedItems(id, itemsPerFeed));
       }
     });
@@ -313,6 +316,39 @@ class RSSAggregator {
     });
     
     return Array.from(categories).sort();
+  }
+  
+  getCategoryByKeyword(keyword: string): string | null {
+    const categories = this.getCategories();
+    const lowercaseKeyword = keyword.toLowerCase();
+    
+    const exactMatch = categories.find(c => c.toLowerCase() === lowercaseKeyword);
+    if (exactMatch) return exactMatch;
+    
+    const partialMatch = categories.find(c => 
+      c.toLowerCase().includes(lowercaseKeyword) || 
+      lowercaseKeyword.includes(c.toLowerCase().split(' ')[0]));
+    if (partialMatch) return partialMatch;
+    
+    const keywordMap: Record<string, string[]> = {
+      'tech': ['tech', 'technology', 'programming', 'software', 'developer', 'ai'],
+      'news': ['news', 'headlines', 'current'],
+      'business': ['business', 'finance', 'economy', 'market'],
+      'health': ['health', 'medical', 'wellness', 'fitness'],
+      'science': ['science', 'research', 'study', 'discovery'],
+      'sports': ['sports', 'game', 'team', 'player']
+    };
+    
+    for (const [category, keywords] of Object.entries(keywordMap)) {
+      if (keywords.some(k => lowercaseKeyword.includes(k))) {
+        const categoryMatch = categories.find(c => 
+          c.toLowerCase().includes(category) || 
+          c.toLowerCase() === category);
+        if (categoryMatch) return categoryMatch;
+      }
+    }
+    
+    return null;
   }
 }
 
@@ -462,12 +498,34 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
       }
       else {
-        const categories = rssAggregator.getCategories();
+        const matchedCategory = rssAggregator.getCategoryByKeyword(command);
         
-        if (categories.some(c => c.toLowerCase() === command.toLowerCase())) {
-          const categoryName = categories.find(c => c.toLowerCase() === command.toLowerCase());
-          const items = await rssAggregator.getAllFeedItems(categoryName, limit);
-          return formatItemsResponse(items, `Latest ${limit} articles in ${categoryName}`);
+        if (matchedCategory) {
+          console.error(`Matched category "${matchedCategory}" from query "${command}"`);
+          const items = await rssAggregator.getAllFeedItems(matchedCategory, limit);
+          return formatItemsResponse(items, `Latest ${limit} articles in ${matchedCategory}`);
+        }
+        
+        if (command.includes('news') || command.includes('tech') || 
+            command.includes('sport') || command.includes('science') || 
+            command.includes('business') || command.includes('health')) {
+          console.error(`Using keyword query for "${command}"`);
+          const items = await rssAggregator.getAllFeedItems(command, limit);
+          return formatItemsResponse(items, `Latest ${limit} articles matching '${command}'`);
+        }
+
+        const words = command.split(/\s+/);
+        if (words.length > 1) {
+          for (const word of words) {
+            if (word.length < 3) continue;
+            
+            const matchedKeywordCategory = rssAggregator.getCategoryByKeyword(word);
+            if (matchedKeywordCategory) {
+              console.error(`Matched category "${matchedKeywordCategory}" from partial keyword "${word}" in query "${command}"`);
+              const items = await rssAggregator.getAllFeedItems(matchedKeywordCategory, limit);
+              return formatItemsResponse(items, `Latest ${limit} articles in ${matchedKeywordCategory} matching '${command}'`);
+            }
+          }
         }
         
         return {

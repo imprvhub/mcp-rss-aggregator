@@ -187,6 +187,97 @@ You can also interact with the MCP using natural language. Claude will interpret
 - "Fetch the latest articles from my programming feeds"
 - "List all my RSS feeds"
 
+## Extended Usage Examples
+
+### Daily News Briefing
+
+Get your news briefing from all your sources:
+
+```
+rss latest --25
+```
+
+This will fetch the 25 most recent articles across all your feeds, giving you a quick overview of the latest news.
+
+### Exploring Top Content
+
+Find the most important or popular articles:
+
+```
+rss top --20
+```
+
+### Category-Based Reading
+
+Focus on specific content categories:
+
+```
+rss "Tech News" --30
+rss "Politics" --15
+rss "Science" --10
+```
+
+### Source-Specific Updates
+
+Read updates from specific sources you follow:
+
+```
+rss --hackernews --20
+rss --nytimes
+rss --techcrunch --15
+```
+
+### Discover Your Available Feeds
+
+Find out what feeds you have configured:
+
+```
+rss list
+```
+
+### Combining Multiple Requests
+
+You can make multiple sequential requests to build a comprehensive view:
+
+```
+rss "Tech News" --10
+rss "Finance" --10
+rss top --5
+```
+
+### Practical Workflows
+
+1. **Morning Routine**:
+   ```
+   rss top --10
+   rss "News" --5
+   ```
+
+2. **Industry Research**:
+   ```
+   rss "Industry News" --15
+   rss --bloomberg --5
+   ```
+
+3. **Tech Updates**:
+   ```
+   rss --hackernews --10
+   rss --techcrunch --5
+   ```
+
+### Working with Claude
+
+You can ask Claude to analyze or summarize the articles:
+
+1. After running: `rss latest --10`
+   Ask: "Can you summarize these articles?"
+
+2. After running: `rss "Tech News" --15`
+   Ask: "What are the key trends in these tech articles?"
+
+3. After running: `rss --nytimes --washingtonpost --10`
+   Ask: "Compare how these sources cover current events"
+
 ## Troubleshooting
 
 ### "Server disconnected" error
