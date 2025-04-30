@@ -2,7 +2,14 @@
 
 [![smithery badge](https://smithery.ai/badge/@imprvhub/mcp-rss-aggregator)](https://smithery.ai/server/@imprvhub/mcp-rss-aggregator)
 
-An integration that allows Claude Desktop to fetch and read content from your favorite RSS feeds using the Model Context Protocol (MCP).
+<table style="border-collapse: collapse; width: 100%; table-layout: fixed;">
+<tr>
+<td style="width: 40%; padding: 15px; vertical-align: middle; border: none;">An integration that allows Claude Desktop to fetch and read content from your favorite RSS feeds using the Model Context Protocol (MCP).</td>
+<td style="width: 60%; padding: 0; vertical-align: middle; border: none; min-width: 300px; text-align: center;"><a href="https://glama.ai/mcp/servers/@imprvhub/mcp-rss-aggregator">
+  <img style="max-width: 100%; height: auto; min-width: 300px;" src="https://glama.ai/mcp/servers/@imprvhub/mcp-rss-aggregator/badge" alt="RSS Aggregator MCP server" />
+</a></td>
+</tr>
+</table>
 
 ## Features
 
