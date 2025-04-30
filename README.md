@@ -1,5 +1,7 @@
 # MCP RSS Aggregator
 
+[![smithery badge](https://smithery.ai/badge/@imprvhub/mcp-rss-aggregator)](https://smithery.ai/server/@imprvhub/mcp-rss-aggregator)
+
 An integration that allows Claude Desktop to fetch and read content from your favorite RSS feeds using the Model Context Protocol (MCP).
 
 ## Features
