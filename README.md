@@ -33,16 +33,16 @@
 
 Click on any timestamp to jump to that section of the video
 
-[00:00](https://youtu.be/9pvm078fHkQ&t=0s) - Sample RSS Feed Demonstration
+[00:00](https://youtu.be/9pvm078fHkQ&t=0s) - **Sample RSS Feed Demonstration**:
 Using the default 'sample-feeds.opml' file included in the repository. This segment displays how Claude processes and presents news content from sources like TechCrunch, The Verge, and other technology publications through the MCP (Model Context Protocol).
 
-[01:05](https://youtu.be/9pvm078fHkQ&t=65s) - Configuration File Editing Process
+[01:05](https://youtu.be/9pvm078fHkQ&t=65s) - **Configuration File Editing Process**:
 Step-by-step walkthrough of accessing and modifying the claude_desktop_config.json file to change the OPML file path reference from the default sample to a customized 'my-feeds.opml' file.
 
-[01:15](https://youtu.be/9pvm078fHkQ&t=75s) - Application Restart Procedure
+[01:15](https://youtu.be/9pvm078fHkQ&t=75s) - **Application Restart Procedure**:
 Illustrating the necessary step of closing and reopening the Claude Desktop application to properly load and apply the modified OPML file configuration changes.
 
-[01:25](https://youtu.be/9pvm078fHkQ&t=85s) - Custom RSS Feed Results
+[01:25](https://youtu.be/9pvm078fHkQ&t=85s) - **Custom RSS Feed Results**:
 Demonstration of the results after implementing the custom OPML file. This section highlights the expanded and more diverse news sources now available through Claude Desktop, including Spanish-language content.
 </details>
 
