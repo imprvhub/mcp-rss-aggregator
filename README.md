@@ -1,11 +1,14 @@
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/imprvhub-mcp-rss-aggregator-badge.png)](https://mseep.ai/app/imprvhub-mcp-rss-aggregator)
-
 # MCP RSS Aggregator
-
+[![Verified on MseeP](https://mseep.ai/badge.svg)](https://mseep.ai/app/51854dcf-6cb2-4bd0-a37f-5b87ba25d7c7)
 [![smithery badge](https://smithery.ai/badge/@imprvhub/mcp-rss-aggregator)](https://smithery.ai/server/@imprvhub/mcp-rss-aggregator)
 
 <table style="border-collapse: collapse; width: 100%; table-layout: fixed;">
 <tr>
+<td style="padding: 15px; vertical-align: middle; border: none; text-align: center;">
+  <a href="https://mseep.ai/app/imprvhub-mcp-rss-aggregator">
+    <img src="https://mseep.net/pr/imprvhub-mcp-rss-aggregator-badge.png" alt="MseeP.ai Security Assessment Badge" />
+  </a>
+</td>
 <td style="width: 40%; padding: 15px; vertical-align: middle; border: none;">An integration that allows Claude Desktop to fetch and read content from your favorite RSS feeds using the Model Context Protocol (MCP).</td>
 <td style="width: 60%; padding: 0; vertical-align: middle; border: none; min-width: 300px; text-align: center;"><a href="https://glama.ai/mcp/servers/@imprvhub/mcp-rss-aggregator">
   <img style="max-width: 100%; height: auto; min-width: 300px;" src="https://glama.ai/mcp/servers/@imprvhub/mcp-rss-aggregator/badge" alt="RSS Aggregator MCP server" />
@@ -358,3 +361,4 @@ This project is licensed under the Mozilla Public License 2.0 - see the [LICENSE
 
 - [Model Context Protocol](https://modelcontextprotocol.io/)
 - [Claude Desktop](https://claude.ai/download)
+- [MCP Series](https://github.com/mcp-series)
