@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/imprvhub-mcp-rss-aggregator-badge.png)](https://mseep.ai/app/imprvhub-mcp-rss-aggregator)
+
 # MCP RSS Aggregator
 
 [![smithery badge](https://smithery.ai/badge/@imprvhub/mcp-rss-aggregator)](https://smithery.ai/server/@imprvhub/mcp-rss-aggregator)
