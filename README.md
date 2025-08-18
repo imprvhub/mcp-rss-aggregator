@@ -1,4 +1,5 @@
 # MCP RSS Aggregator
+[![Trust Score](https://archestra.ai/mcp-catalog/api/badge/quality/imprvhub/mcp-rss-aggregator)](https://archestra.ai/mcp-catalog/imprvhub__mcp-rss-aggregator)
 [![Verified on MseeP](https://mseep.ai/badge.svg)](https://mseep.ai/app/51854dcf-6cb2-4bd0-a37f-5b87ba25d7c7)
 [![smithery badge](https://smithery.ai/badge/@imprvhub/mcp-rss-aggregator)](https://smithery.ai/server/@imprvhub/mcp-rss-aggregator)
 
