@@ -13,7 +13,7 @@
     "@modelcontextprotocol/sdk": "^1.25.2",
     "axios": "^1.12.0",
     "cheerio": "^1.0.0",
-    "fast-xml-parser": "^4.3.5",
+    "fast-xml-parser": "^5.3.4",
     "opml-to-json": "^1.0.1",
     "rss-parser": "^3.13.0"
   },
