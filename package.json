@@ -10,7 +10,7 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.25.2",
+    "@modelcontextprotocol/sdk": "^1.26.0",
     "axios": "^1.12.0",
     "cheerio": "^1.0.0",
     "fast-xml-parser": "^5.3.4",
