@@ -17,6 +17,10 @@
 </tr>
 </table>
 
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/imprvhub-mcp-rss-aggregator).
+
 ## Features
 
 - Read articles from your favorite RSS feeds directly in Claude Desktop
