@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.26.0",
-    "axios": "^1.13.5",
+    "axios": "^1.16.0",
     "cheerio": "^1.0.0",
-    "fast-xml-parser": "^5.3.8",
+    "fast-xml-parser": "^5.7.0",
     "opml-to-json": "^1.0.1",
     "rss-parser": "^3.13.0"
   },
