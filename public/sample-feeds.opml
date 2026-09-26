@@ -18,7 +18,7 @@
     </outline>
     <outline text="Science" title="Science">
       <outline text="NASA" title="NASA" type="rss" xmlUrl="https://www.nasa.gov/feed/" htmlUrl="https://www.nasa.gov/"/>
-      <outline text="Scientific American" title="Scientific American" type="rss" xmlUrl="https://rss.sciam.com/ScientificAmerican-Global" htmlUrl="https://www.scientificamerican.com/"/>
+      <outline text="Scientific American" title="Scientific American" type="rss" xmlUrl="https://www.scientificamerican.com/platform/syndication/rss/" htmlUrl="https://www.scientificamerican.com/"/>
     </outline>
   </body>
 </opml>

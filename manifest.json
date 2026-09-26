@@ -1,0 +1,43 @@
+{
+  "manifest_version": "0.2",
+  "name": "mcp-rss-aggregator",
+  "display_name": "RSS Aggregator MCP",
+  "version": "0.2.0",
+  "description": "Read and aggregate your RSS and Atom feeds from Claude.",
+  "long_description": "A Model Context Protocol server that aggregates RSS and Atom feeds. Lists your configured feeds by category, returns the newest articles across all of them (optionally filtered to one category), or reads a single feed. Point it at your own OPML or JSON subscription list, or use the bundled sample list.",
+  "author": {
+    "name": "Iván Luna",
+    "email": "contact@ivanluna.dev",
+    "url": "https://github.com/imprvhub"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imprvhub/mcp-rss-aggregator"
+  },
+  "homepage": "https://github.com/imprvhub/mcp-rss-aggregator",
+  "documentation": "https://github.com/imprvhub/mcp-rss-aggregator#readme",
+  "license": "MPL-2.0",
+  "keywords": ["rss", "atom", "opml", "feeds", "news", "mcp"],
+  "server": {
+    "type": "node",
+    "entry_point": "build/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/build/index.js"],
+      "env": {
+        "RSS_FEEDS_PATH": "${user_config.feeds_path}"
+      }
+    }
+  },
+  "user_config": {
+    "feeds_path": {
+      "type": "file",
+      "title": "Feed list",
+      "description": "Optional path to your own OPML or JSON subscription list. Leave empty to use the bundled sample feeds.",
+      "required": false
+    }
+  },
+  "compatibility": {
+    "runtimes": { "node": ">=20" }
+  }
+}

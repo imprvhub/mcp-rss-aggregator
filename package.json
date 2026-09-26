@@ -1,24 +1,53 @@
 {
   "name": "mcp-rss-aggregator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Model Context Protocol Server for aggregating RSS feeds in Claude Desktop",
   "main": "build/index.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "node build/index.js",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "test": "node --test tests/*.test.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.26.0",
-    "axios": "^1.18.0",
-    "cheerio": "^1.0.0",
-    "fast-xml-parser": "^5.7.0",
-    "opml-to-json": "^1.0.1",
+    "@modelcontextprotocol/sdk": "^1.30.1",
+    "fast-xml-parser": "^5.11.1",
     "rss-parser": "^3.13.0"
   },
   "devDependencies": {
-    "@types/node": "^22.14.1",
-    "typescript": "^5.2.2"
-  }
+    "@types/node": "^26.6.3",
+    "typescript": "^5.9.3"
+  },
+  "author": {
+    "name": "Iván Luna",
+    "email": "contact@ivanluna.dev",
+    "url": "https://github.com/imprvhub"
+  },
+  "license": "MPL-2.0",
+  "homepage": "https://github.com/imprvhub/mcp-rss-aggregator",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imprvhub/mcp-rss-aggregator.git"
+  },
+  "bin": {
+    "mcp-rss-aggregator": "build/index.js"
+  },
+  "files": [
+    "build",
+    "public/sample-feeds.opml"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "rss",
+    "atom",
+    "opml",
+    "feeds",
+    "news",
+    "model-context-protocol",
+    "mcp",
+    "claude"
+  ]
 }

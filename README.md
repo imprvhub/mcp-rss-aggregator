@@ -1,6 +1,6 @@
 # MCP RSS Aggregator
 [![Trust Score](https://archestra.ai/mcp-catalog/api/badge/quality/imprvhub/mcp-rss-aggregator)](https://archestra.ai/mcp-catalog/imprvhub__mcp-rss-aggregator)
-[![smithery badge](https://smithery.ai/badge/@imprvhub/mcp-rss-aggregator)](https://smithery.ai/server/@imprvhub/mcp-rss-aggregator)
+[![Smithery](https://img.shields.io/badge/Smithery-imprvhub%2Fmcp--rss--aggregator-8A2BE2)](https://smithery.ai/server/imprvhub/mcp-rss-aggregator)
 
 <table style="border-collapse: collapse; width: 100%; table-layout: fixed;">
 <tr>
@@ -24,12 +24,13 @@
 - Get the latest articles across all your feeds
 - Filter articles by feed source or category
 - Well-formatted article presentation with titles, snippets, and links
+- Feeds are read and formatted locally; no article content leaves your machine
 
 ## Demo
 
 <p>
   <a href="https://youtu.be/9pvm078fHkQ">
-    <img src="public/assets/preview.png" width="600" alt="Status Observer MCP Demo">
+    <img src="public/assets/preview.png" width="600" alt="RSS Aggregator MCP Demo">
   </a>
 </p>
 
@@ -53,11 +54,19 @@ Demonstration of the results after implementing the custom OPML file. This secti
 
 ## Requirements
 
-- Node.js 16 or higher
+- Node.js 20 or higher
 - Claude Desktop
 - Internet connection to access RSS feeds
 
 ## Installation
+
+### Installing via Smithery
+
+Install the packaged bundle from the [Smithery server page](https://smithery.ai/server/imprvhub/mcp-rss-aggregator), or from the CLI:
+
+```bash
+npx -y @smithery/cli@latest mcp add imprvhub/mcp-rss-aggregator --client claude
+```
 
 ### Installing Manually
 1. Clone or download this repository:
@@ -149,7 +158,9 @@ Edit this file to add the RSS Aggregator MCP configuration. If the file doesn't 
     "rssAggregator": {
       "command": "node",
       "args": ["ABSOLUTE_PATH_TO_DIRECTORY/mcp-rss-aggregator/build/index.js"],
-      "feedsPath": "ABSOLUTE_PATH_TO_YOUR_FEEDS_FILE.opml"
+      "env": {
+        "RSS_FEEDS_PATH": "ABSOLUTE_PATH_TO_YOUR_FEEDS_FILE.opml"
+      }
     }
   }
 }
@@ -160,7 +171,12 @@ Edit this file to add the RSS Aggregator MCP configuration. If the file doesn't 
   - macOS/Linux example: `/Users/username/mcp-rss-aggregator`
   - Windows example: `C:\\Users\\username\\mcp-rss-aggregator`
 - Replace `ABSOLUTE_PATH_TO_YOUR_FEEDS_FILE.opml` with the path to your OPML or JSON file
-  - If omitted, the sample feeds file will be used
+  - The whole `env` block is optional. Without it, the bundled sample feed list is used.
+
+> **Changed in 0.2.0**: the feed list path is read from the `RSS_FEEDS_PATH` environment
+> variable. Earlier versions took a non-standard `feedsPath` key, which the server found by
+> opening `claude_desktop_config.json` itself — a file that also holds every other MCP
+> server's API keys. This server no longer reads that file.
 
 If you already have other MCPs configured, simply add the "rssAggregator" section inside the "mcpServers" object:
 
@@ -176,7 +192,9 @@ If you already have other MCPs configured, simply add the "rssAggregator" sectio
       "args": [
         "ABSOLUTE_PATH_TO_DIRECTORY/mcp-rss-aggregator/build/index.js"
       ],
-      "feedsPath": "ABSOLUTE_PATH_TO_YOUR_FEEDS_FILE.opml"
+      "env": {
+        "RSS_FEEDS_PATH": "ABSOLUTE_PATH_TO_YOUR_FEEDS_FILE.opml"
+      }
     }
   }
 }
@@ -187,35 +205,33 @@ The MCP server will automatically start when Claude Desktop needs it, based on t
 ## Usage
 
 1. Restart Claude Desktop after modifying the configuration
-2. In Claude, use the `rss` command to interact with the RSS Aggregator MCP Server
+2. Ask Claude for your feeds in plain language; it will pick the right tool
 3. The MCP server runs as a subprocess managed by Claude Desktop
 
-## Available Commands
+## Available Tools
 
-The RSS Aggregator MCP provides a tool named `rss` with several commands:
+> **Changed in 0.2.0**: the single `rss` tool that took command strings (`rss latest --20`,
+> `rss --hackernews`) has been replaced by three tools with real parameters. Claude no longer
+> has to guess a command syntax, and the `set-feeds-path` command is gone — the feed list is
+> configured with `RSS_FEEDS_PATH` rather than by a tool call that could read arbitrary files.
 
-| Command | Description | Parameters | Example |
-|---------|-------------|------------|---------|
-| `latest` | Show latest articles from all feeds | Optional limit (--N) | `rss latest --20` |
-| `top` or `best` | Show top articles from all feeds | Optional limit (--N) | `rss top --15` |
-| `list` | List all available feeds | None | `rss list` |
-| `--[feed-id]` | Show articles from a specific feed | Optional limit (--N) | `rss --hackernews --10` |
-| `[category]` | Show articles from a specific category | Optional limit (--N) | `rss "Tech News" --20` |
-| `set-feeds-path --[path]` | Set path to OPML/JSON file | Path to file | `rss set-feeds-path --/path/to/feeds.opml` |
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| `rss_list` | List configured feeds grouped by category, with the `feed_id` for each | none |
+| `rss_latest` | Newest articles across all feeds, most recent first | `limit`: 1-50 (default 15); `category`: optional |
+| `rss_feed` | Newest articles from one feed | `feed_id`: required; `limit`: 1-50 (default 10) |
 
 ## Example Usage
 
 Here are various examples of how to use the RSS Aggregator with Claude:
 
-### Direct Commands:
+### Direct Tool Usage:
 
 ```
-rss latest
-rss top --20
-rss list
-rss "Tech News"
-rss --hackernews
-rss --techcrunch --15
+"Use rss_list to show my feeds"
+"Use rss_latest with limit 20"
+"Use rss_latest with category 'Tech News'"
+"Use rss_feed with feed_id news-ycombinator-com and limit 10"
 ```
 
 ### Natural Language Queries:
@@ -231,92 +247,31 @@ You can also interact with the MCP using natural language. Claude will interpret
 
 ### Daily News Briefing
 
-Get your news briefing from all your sources:
+> "Give me the 25 latest articles across all my feeds and summarise the themes."
 
-```
-rss latest --25
-```
-
-This will fetch the 25 most recent articles across all your feeds, giving you a quick overview of the latest news.
-
-### Exploring Top Content
-
-Find the most important or popular articles:
-
-```
-rss top --20
-```
+Claude calls `rss_latest` with `limit: 25`, then summarises.
 
 ### Category-Based Reading
 
-Focus on specific content categories:
+> "What's new in Science today?"
+> "Anything interesting in my Programming feeds?"
 
-```
-rss "Tech News" --30
-rss "Politics" --15
-rss "Science" --10
-```
+Claude calls `rss_latest` with the matching `category`.
 
 ### Source-Specific Updates
 
-Read updates from specific sources you follow:
+> "What's on the front page of Hacker News?"
+> "Show me the last 15 TechCrunch posts."
 
-```
-rss --hackernews --20
-rss --nytimes
-rss --techcrunch --15
-```
-
-### Discover Your Available Feeds
-
-Find out what feeds you have configured:
-
-```
-rss list
-```
-
-### Combining Multiple Requests
-
-You can make multiple sequential requests to build a comprehensive view:
-
-```
-rss "Tech News" --10
-rss "Finance" --10
-rss top --5
-```
-
-### Practical Workflows
-
-1. **Morning Routine**:
-   ```
-   rss top --10
-   rss "News" --5
-   ```
-
-2. **Industry Research**:
-   ```
-   rss "Industry News" --15
-   rss --bloomberg --5
-   ```
-
-3. **Tech Updates**:
-   ```
-   rss --hackernews --10
-   rss --techcrunch --5
-   ```
+Claude calls `rss_feed` with the feed's `feed_id` (see `rss_list`).
 
 ### Working with Claude
 
-You can ask Claude to analyze or summarize the articles:
+Because the articles come back as text in the conversation, you can follow up directly:
 
-1. After running: `rss latest --10`
-   Ask: "Can you summarize these articles?"
-
-2. After running: `rss "Tech News" --15`
-   Ask: "What are the key trends in these tech articles?"
-
-3. After running: `rss --nytimes --washingtonpost --10`
-   Ask: "Compare how these sources cover current events"
+- "Summarise these articles."
+- "Which of these are about AI?"
+- "Compare how these sources cover the same story."
 
 ## Troubleshooting
 
@@ -341,8 +296,20 @@ If the RSS Aggregator tools don't appear in Claude:
 ### Feeds not loading
 If your feeds aren't loading properly:
 - Make sure your OPML/JSON file is correctly formatted
-- Check if the `feedsPath` in your configuration is correct
+- Check that `RSS_FEEDS_PATH` points at an existing `.opml` or `.json` file. If the path does
+  not exist the server logs a warning and falls back to the bundled sample list
 - Try running the server manually with a known good feeds file
+- `rss_list` reports which feed list it loaded, and `rss_latest` names any feed it could not read
+
+## Development
+
+Run the test suite (no network required):
+
+```bash
+npm install
+npm run build
+npm test
+```
 
 ## Contributing
 
