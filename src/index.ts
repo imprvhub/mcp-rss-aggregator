@@ -243,7 +243,7 @@ function formatItems(items: FeedItem[], title: string, failures: string[] = []):
 const aggregator = new RSSAggregator();
 
 const server = new Server(
-  { name: 'mcp-rss-aggregator', version: '0.2.0' },
+  { name: 'mcp-rss-aggregator', version: '0.3.0' },
   { capabilities: { tools: {} } }
 );
 

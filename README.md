@@ -173,7 +173,7 @@ Edit this file to add the RSS Aggregator MCP configuration. If the file doesn't 
 - Replace `ABSOLUTE_PATH_TO_YOUR_FEEDS_FILE.opml` with the path to your OPML or JSON file
   - The whole `env` block is optional. Without it, the bundled sample feed list is used.
 
-> **Changed in 0.2.0**: the feed list path is read from the `RSS_FEEDS_PATH` environment
+> **Changed in 0.3.0**: the feed list path is read from the `RSS_FEEDS_PATH` environment
 > variable. Earlier versions took a non-standard `feedsPath` key, which the server found by
 > opening `claude_desktop_config.json` itself — a file that also holds every other MCP
 > server's API keys. This server no longer reads that file.
@@ -210,7 +210,7 @@ The MCP server will automatically start when Claude Desktop needs it, based on t
 
 ## Available Tools
 
-> **Changed in 0.2.0**: the single `rss` tool that took command strings (`rss latest --20`,
+> **Changed in 0.3.0**: the single `rss` tool that took command strings (`rss latest --20`,
 > `rss --hackernews`) has been replaced by three tools with real parameters. Claude no longer
 > has to guess a command syntax, and the `set-feeds-path` command is gone — the feed list is
 > configured with `RSS_FEEDS_PATH` rather than by a tool call that could read arbitrary files.
